@@ -1,74 +1,48 @@
-# dsh-edex-ui
+# dsh-edex-artemis-ui
 
-**DeepSeek Harness eDEX-UI shell plugin** — a terminal-inspired by https://github.com/GitSquared/edex-ui overlay for the
-DSH web GUI. Adds a classic eDEX-UI layout: system telemetry left bar, world-map
-right bar, filesystem browser, and a terminal-styled composer input — all wrapped
-around the original UI.
+**Artemis II Mission Control Theme** — a mission-control-inspired eDEX-UI shell variant for the
+DeepSeek Harness Web GUI. Based on the [Artemis II Tracker](https://artemis.cdnspace.ca) live mission control dashboard.
 
-![dsh-edex-ui screenshot](packages/bundle/assets/screenshot.png)
+![Artemis theme preview](preview.gif)
+
+## Theme
+
+- **Accent**: Neon cyan `#00D9FF` on deep navy `#020608` / `#0a1628`
+- **Frame border**: 1px solid `#06465A` with 14px rounded corners and subtle cyan glow
+- **Single-panel dashboard**: No per-card sub-borders — clean, continuous card surfaces
+- **Semantic colors**: Success `#00F59A`, Warning `#C78C00`, Error `#C52B3F`, Info `#00D9FF`
+- **Workspace**: Background matches the panel surface, framed with `ARTEMIS WORKSPACE` title bar
+
+## Featured Widget
+
+**RECOVERY SEQUENCE TIMELINE** — replaces the WORLD VIEW globe with a vertical mission recovery timeline showing splashdown steps, status indicators (green for completed, cyan for active), descriptions, and timestamps.
+
+## Widget Reconciliation
+
+| Reference Widget | eDEX Slot | Match |
+|---|---|---|
+| RECOVERY SEQUENCE | processes | high |
+| STATUS INDICATORS | network-status | partial |
+| CREW INFO | info | partial |
 
 ## Features
 
-- **Left bar** — system overview panel: CPU, memory, swap, processes, platform
-  info, and thermal/power state, with per-core CPU sparklines
-- **Right bar** — network status + encom-globe world view with endpoint markers
-  and spline links, plus a dual up/down traffic chart with grid
-- **Top panel** — an empty full-width strip overlaying the shell's top edge
-  above every layer (ready for future chrome)
-- **Bottom panel** — one strip hosting three swappable widgets, each wrapped in
-  the same title/border chrome:
-  - **DIR** — filesystem browser as a terminal-style LIST (icon + name +
-    DIR/FILE), the same width as the left bar, with storage bar
-  - **PREVIEW** — file preview / editor pane (text, code, images), spanning
-    the center region
-  - **TERMINAL** — a real host shell: commands execute through the
-    `systemMetrics.runCommand` Remote (`sh -c`, 30s timeout), with client-side
-    `cd`/`clear`/`help`/`pwd`, ↑/↓ history, and a prompt that follows the
-    filesystem browser until you run your first command
-- **Terminal-styled composer** — flattened input capsule, green block caret, and
-  a `~/<workspace>` path prompt at the left edge of the input area
-- **Workspace-follow** — the dir panel and prompt track the active conversation's
-  workspace; switching sessions navigates both the filesystem browser and the
-  prompt
-- **Green-on-black skin** — token overrides recolour the entire original UI to
-  terminal green, without touching the user's theme preference
+- **Left bar**: System overview (CPU, memory, swap, platform info) + RECOVERY SEQUENCE timeline
+- **Right bar**: Network status + RECOVERY SEQUENCE timeline (featured) + Traffic chart
+- **Bottom panel**: Filesystem browser (DIR), file preview/editor (PREVIEW), host terminal (TERMINAL)
+- **Terminal-styled composer**: Flattened input capsule, block caret, `~/<workspace>` path prompt
+- **Workspace-follow**: DIR panel and prompt track the active conversation's workspace
 
 ## Installation
 
-The plugin is published to npm as `@danielng23/dsh-edex-ui`. From the harness
-checkout:
-
 ```sh
-pnpm dsh plugin --profile web add @danielng23/dsh-edex-ui
-pnpm dsh web   # serves the eDEX shell over the default GUI
+pnpm dsh plugin --profile web add @danielng23/dsh-edex-artemis-ui
+pnpm dsh web
 ```
-
-To run the local checkout instead of the npm release (for development), add
-the bundle with a `file:` path — its `file:` dependency specs link the local
-sub-packages:
-
-```sh
-pnpm dsh plugin --profile web add file:/path/to/dsh-edex-ui/packages/bundle
-```
-
-See [LOCAL_DEVELOPMENT.md](LOCAL_DEVELOPMENT.md) for the three-instance port
-layout (3080 baseline / 3081 npm / 3083 local), the build, and the iteration
-workflow.
 
 ## Development
 
-See [LOCAL_DEVELOPMENT.md](LOCAL_DEVELOPMENT.md) for the full build, install,
-and iteration workflow. The widget architecture for the shell bars is
-documented in [WIDGETS.md](WIDGETS.md).
-
-## Packages
-
-| Package | Host/Client | Description |
-|---|---|---|
-| `packages/bundle` | — | Installable bundle (`cordis.patch.yml`) |
-| `packages/ui-edex` | client | The eDEX shell frame and all panels |
-| `packages/ui-theme-terminal` | client | Appearance → Terminal theme row |
-| `packages/host/system-metrics` | host | System telemetry RPC + file read/write + `runCommand` shell execution |
+See [LOCAL_DEVELOPMENT.md](LOCAL_DEVELOPMENT.md) for the full build, install, and iteration workflow.
 
 ## License
 
