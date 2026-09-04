@@ -1,5 +1,5 @@
 {
-  "name": "@danielng23/dsh-client-ui-edex",
+  "name": "@danielng23/dsh-artemis-client-ui-edex",
   "description": "Artemis-themed eDEX-UI style shell frame over the web client: system telemetry left bar, network/world-view right bar, filesystem browser bottom-left, original UI centered",
   "version": "0.1.0",
   "publishConfig": {
@@ -7,7 +7,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ph4310822/dsh-edex-ui.git",
+    "url": "git+https://github.com/ph4310822/dsh-edex-artemis-ui.git",
     "directory": "packages/ui-edex"
   },
   "type": "module",
