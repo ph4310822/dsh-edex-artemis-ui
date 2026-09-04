@@ -1,0 +1,86 @@
+{
+  "metadata": {
+    "filename": "artemis-discovery",
+    "url": "https://artemis.cdnspace.ca",
+    "source": "vision",
+    "description": "Artemis II Mission Control — Welcome Home splash page with recovery sequence timeline"
+  },
+  "theme": {
+    "background": "#020608",
+    "panelTone": "#0a1628",
+    "primaryAccent": "#00D9FF",
+    "secondaryAccent": "#00A89D",
+    "textPrimary": "#F1F5F9",
+    "textSecondary": "#94A3B8",
+    "semanticColors": {
+      "success": "#00F59A",
+      "warn": "#C78C00",
+      "error": "#C52B3F",
+      "info": "#00D9FF"
+    },
+    "glowColor": "#00D9FF"
+  },
+  "borderFeatures": {
+    "frame": {
+      "presence": "full",
+      "style": "solid",
+      "widthPx": 1,
+      "color": "#06465A",
+      "cornerRadiusPx": 14,
+      "glow": { "color": "#00D9FF", "blurPx": 8, "intensity": "subtle" },
+      "notes": "Main shell frame border: 1px solid #06465A with 14px border-radius and subtle cyan glow"
+    },
+    "cards": {
+      "presence": "none", "style": "none", "widthPx": 0, "color": "transparent", "cornerRadiusPx": 0, "glow": null,
+      "notes": "Single-panel dashboard — no per-card sub-borders"
+    },
+    "dividers": {
+      "presence": "full", "style": "solid", "widthPx": 1, "color": "#0a2a3a", "cornerRadiusPx": 0, "glow": null,
+      "notes": "Horizontal separator lines between sections, 1px solid dark teal"
+    },
+    "inputs": {
+      "presence": "full", "style": "solid", "widthPx": 1, "color": "#06465A", "cornerRadiusPx": 4,
+      "glow": { "color": "#00D9FF", "blurPx": 4, "intensity": "subtle" },
+      "notes": "Input/composer border matching frame color with subtle glow on focus"
+    },
+    "activeIndicators": {
+      "presence": "full", "style": "solid", "widthPx": 2, "color": "#00D9FF", "cornerRadiusPx": 0,
+      "glow": { "color": "#00D9FF", "blurPx": 8, "intensity": "moderate" },
+      "notes": "Active item indicators: 2px solid #00D9FF with moderate glow"
+    }
+  },
+  "layout": {
+    "regions": [
+      {"name": "topBar", "topBar": true, "leftBar": false, "rightBar": false, "bottomBar": false, "cards": false, "gauges": false, "radar": false},
+      {"name": "centerPanel", "topBar": false, "leftBar": false, "rightBar": false, "bottomBar": false, "cards": true, "gauges": false, "radar": false},
+      {"name": "leftWidgets", "topBar": false, "leftBar": true, "rightBar": false, "bottomBar": false, "cards": true, "gauges": false, "radar": false},
+      {"name": "rightWidgets", "topBar": false, "leftBar": false, "rightBar": true, "bottomBar": false, "cards": true, "gauges": false, "radar": false}
+    ]
+  },
+  "keyElements": [
+    {"type": "panel", "description": "Single continuous dashboard panel", "region": "center"},
+    {"type": "timeline", "description": "RECOVERY SEQUENCE TIMELINE — vertical timeline", "region": "center"},
+    {"type": "status-indicators", "description": "Circular indicators: green completed, cyan active", "region": "center"},
+    {"type": "crew-info", "description": "Crew member listing with partner flags", "region": "center"},
+    {"type": "separator", "description": "Thin horizontal dividers between sections", "region": "center"}
+  ],
+  "widgets": {
+    "reference": [
+      {"name": "RECOVERY SEQUENCE", "type": "timeline", "region": "center", "description": "Vertical timeline with recovery steps, status markers, descriptions, timestamps"},
+      {"name": "STATUS INDICATORS", "type": "indicators", "region": "center", "description": "Circular indicators: green completed, cyan active/pending"},
+      {"name": "CREW INFO", "type": "info", "region": "center", "description": "Crew member listing with names and titles"},
+      {"name": "PARTNER FLAGS", "type": "icons", "region": "center", "description": "International partner flags row"}
+    ],
+    "matches": [
+      {"reference": "RECOVERY SEQUENCE", "slot": "processes", "match": "high"},
+      {"reference": "STATUS INDICATORS", "slot": "network-status", "match": "partial"},
+      {"reference": "CREW INFO", "slot": "info", "match": "partial"}
+    ],
+    "featured": {
+      "reference": "RECOVERY SEQUENCE",
+      "name": "RECOVERY SEQUENCE TIMELINE",
+      "slot": "globe",
+      "description": "Vertical timeline widget with circular status indicators replacing the WORLD VIEW globe"
+    }
+  }
+}
